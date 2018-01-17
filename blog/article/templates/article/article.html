@@ -1,24 +1,22 @@
-<!doctype html>
+% extends 'main/base.html' %}
 {% load staticfiles %}
-<html>
-  <head>
-    <title>部落格</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
-  </head>
-  <body>
-  
-  
-    {% include 'main/menu.html' %} 
-    {% include 'article/searchForm.html' %}
-    <h2>歡迎來到我的部落格</h2>
-    {% include 'main/messages.html' %}
-    
-    <p class="inlineBlock"><a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a></p>
-    <br><br><hr>
-    
-    
+{% block css %}
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+{% endblock %}
+{% block heading %}歡迎蒞臨{% endblock %}
+{% block content %}
+{% include 'article/searchForm.html' %}
+<p class="inlineBlock"><a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a></p>
+
+  ...
+
+  {% endfor %}
+  <hr>
+{% endfor %}
+{% endblock %}
+{% block script %}
+  <script src={% static 'main/js/deleteConfirm.js' %}></script>
+{% endblock %}
     {% for items in itemList %}
       {% for item in items %}
         {% if forloop.first %}
